@@ -8,11 +8,11 @@ class Home extends Component {
     }
 
   handleSubmit (e){
-    console.log("e ", e);
+    console.log("e.target.children ", e.target.children);
     e.preventDefault();
-    let teacherName = e.target.children.name.value;
+    let teacherName = e.target.children[0].value;
     console.log("teacherName: ", teacherName);
-    let teacherTopic = e.target.children.topic.value;
+    let teacherTopic = e.target.children[1].value;
     console.log("teacherTopic: ", teacherTopic);
     let path = `teachers/${teacherTopic}/${teacherName}`;
     this.props.history.push(path);
@@ -27,7 +27,7 @@ class Home extends Component {
         <p>We have thousands of videos created by expert teachers on web design and front end development. Our library is continually refreshed with the latest on web technology so you will never fall behind.</p>
         <hr />
         <h3>Featured Teachers</h3>
-        <form onSubmit={e => this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Name" ref={ (input) => this.name = input } />
           <input type="text" placeholder="Topic" ref={ (input) => this.topic = input } />
           <button type="submit">Go!</button>
